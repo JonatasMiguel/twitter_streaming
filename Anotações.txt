@@ -1,0 +1,12 @@
+Anotações:
+1-Necessario instalar o pacote: "requests" 
+    comando: py -m pip install requests
+
+2-Necessario instalar o pacote: "requests_oauthlib" 
+    comando: py -m pip install requests_oauthlib  
+
+3-Necessario instalar o pacote: "BeautifulSoup"
+    comando: py -m pip install BeautifulSoup4
+
+4-Instalar o pacote : "pyspark"   
+    comando: py -m pip install pyspark

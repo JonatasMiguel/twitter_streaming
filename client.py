@@ -1,9 +1,9 @@
 import socket
 import sys
 import requests
-
 import requests_oauthlib
 import json
+
 from bs4 import BeautifulSoup
 from requests.models import Response
 
@@ -95,9 +95,9 @@ if __name__ == '__main__':
     TCP_IP = 'localhost'
     TCP_PORT = 9017
     conn = None
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)# criando com ipv4
 
-    s.bind((TCP_IP, TCP_PORT))
+    s.bind((TCP_IP, TCP_PORT))##
     s.listen(1)
 
     print("Waiting for TCP connection...")
