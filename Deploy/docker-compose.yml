@@ -25,7 +25,7 @@ services:
     deploy:
       placement:
         constraints:
-          - [node.labels.role==master]
+          - node.labels.role==master
 
   spark-worker:
     image: "sdesilva26/spark_worker:0.0.2"
@@ -38,7 +38,7 @@ services:
     deploy:
       placement:
         constraints:
-          - [node.labels.role==worker]
+          - node.labels.role==worker
       replicas: 3
     networks:
       - spark-net       
