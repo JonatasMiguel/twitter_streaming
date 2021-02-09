@@ -2,7 +2,6 @@ version: "3"
 services: 
   client-twitter:
     build: ./ClientTwitter/
-    dockerfile: ClientTwitter/
     ports: 
       - "9998:9998"
     networks:
@@ -10,7 +9,6 @@ services:
   
   streaming:
     build: ./SparkJobs/
-    dockerfile: SparkJobs/
     ports: 
       - "9998:9998"
     networks:
