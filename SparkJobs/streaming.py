@@ -71,7 +71,7 @@ if __name__ == "__main__":
     ssc.checkpoint("checkpoint_TwitterApp")
 
     # read data from port 9009
-    dataStream = ssc.socketTextStream("localhost", 9017)
+    dataStream = ssc.socketTextStream("localhost", 9998)
 
     # split each tweet into words
     words = dataStream.flatMap(lambda line: line.split(" "))

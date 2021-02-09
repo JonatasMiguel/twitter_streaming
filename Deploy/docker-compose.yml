@@ -1,0 +1,48 @@
+version: "3"
+services: 
+  client-twitter:
+    build: ./ClientTwitter/
+    dockerfile: ClientTwitter/
+    ports: 
+      - "9998:9998"
+    networks:
+      - spark-net
+  
+  streaming:
+    build: ./SparkJobs/
+    dockerfile: SparkJobs/
+    ports: 
+      - "9998:9998"
+    networks:
+      - spark-net
+
+  spark-master:
+    image: "sdesilva26/spark_master:0.0.2"
+    ports: 
+      - "8080:8080"
+    networks:
+      - spark-net
+    deploy:
+      placement:
+        constraints:
+          -node.labels.role==master
+
+  spark-worker:
+    image: "sdesilva26/spark_worker:0.0.2"
+    depends_on: spark-master
+    ports:
+      - "8081:8081"
+    environment: 
+      - CORES=3
+      - MEMORY=15G
+    deploy:
+      placement:
+        constraints:
+          - node.labels.role==worker
+      replicas: 3
+    networks:
+      - spark-net       
+
+networks: 
+  spark-net:
+    driver: overlay     

@@ -110,7 +110,7 @@ def send_tweets_to_spark(line,conn):
       
 
 def initFilterStream():
-    with open('keys.json') as keys_json:
+    with open('Keys/keys.json') as keys_json:
         bearer_token = json.load(keys_json)['BEARER_TOKEN']
         headers = create_headers(bearer_token)
         rules = get_rules(headers, bearer_token)
@@ -119,13 +119,13 @@ def initFilterStream():
         get_stream(headers, set, bearer_token)
 
 def initStream():
-    with open('keys.json') as keys_json:
+    with open('Keys/keys.json') as keys_json:
         bearer_token = json.load(keys_json)['BEARER_TOKEN']
         url = get_simple_url()
         headers = create_headers(bearer_token)
         timeout = 0
 
-        TCP_IP = '192.168.2.9'
+        TCP_IP = 'localhost'
         TCP_PORT = 9999
         conn = None
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)# criando com ipv4

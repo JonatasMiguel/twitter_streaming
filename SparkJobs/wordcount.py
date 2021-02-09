@@ -34,7 +34,7 @@ from pyspark.streaming import StreamingContext
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: network_wordcount.py <hostname> <port>", file=sys.stderr)
+        print("Usage: wordcount.py <hostname> <port>", file=sys.stderr)
         exit(-1)
     sc = SparkContext(appName="PythonStreamingNetworkWordCount")
     ssc = StreamingContext(sc, 1)
