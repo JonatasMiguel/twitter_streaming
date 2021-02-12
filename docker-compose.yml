@@ -1,14 +1,14 @@
 version: "3"
 services: 
   client-twitter:
-    build: ./ClientTwitter/
+    build: .\ClientTwitter
     ports: 
       - "9998:9998"
     networks:
       - spark-net
   
   streaming:
-    build: ./SparkJobs/
+    build: .\SparkJobs
     ports: 
       - "9998:9998"
     networks:

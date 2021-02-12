@@ -10,3 +10,11 @@ Anotações:
 
 4-Instalar o pacote : "pyspark"   
     comando: py -m pip install pyspark
+
+
+Estrutura:
+1 container para cada aplicação???
+TwitterClient: Fica lendo a api do Twitter e envia para a porta TCP_IP = '192.168.2.9' TCP_PORT = 9999
+
+pesquisar sobre google cloud run
+
