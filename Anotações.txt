@@ -18,3 +18,5 @@ TwitterClient: Fica lendo a api do Twitter e envia para a porta TCP_IP = '192.16
 
 pesquisar sobre google cloud run
 
+Para rodar local:
+docker network create -d overlay --attachable spark-net

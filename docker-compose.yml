@@ -14,6 +14,13 @@ services:
     networks:
       - spark-net
 
+  DashBoard:
+    build: .\HashtagsDashboard
+    ports: 
+      - "5001:5001"
+    networks:
+      - spark-net
+
   spark-master:
     image: "sdesilva26/spark_master:0.0.2"
     ports: 

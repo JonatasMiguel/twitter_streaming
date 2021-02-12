@@ -126,7 +126,7 @@ def initStream():
         timeout = 0
 
         TCP_IP = 'localhost'
-        TCP_PORT = 9999
+        TCP_PORT = 9998
         conn = None
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)# criando com ipv4
 
