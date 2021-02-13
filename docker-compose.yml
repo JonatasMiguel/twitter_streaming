@@ -6,18 +6,18 @@ services:
       - "9998:9998"
     networks:
       - spark-net
-  
-  streaming:
-    build: .\SparkJobs
-    ports: 
-      - "9998:9998"
-    networks:
-      - spark-net
-
+    
   DashBoard:
     build: .\HashtagsDashboard
     ports: 
       - "5001:5001"
+    networks:
+      - spark-net
+
+  streaming-submit:
+    image: "sdesilva26/spark_submit:0.0.2"
+    ports: 
+      - "9998:9998"
     networks:
       - spark-net
 

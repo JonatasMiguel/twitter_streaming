@@ -1,11 +1,21 @@
-FROM python:3
+FROM python:3-alpine
 
-WORKDIR /HashtagsDashboard
+RUN apk add --virtual .build-dependencies \ 
+            --no-cache \
+            python3-dev \
+            build-base \
+            linux-headers \
+            pcre-dev
 
-ADD . /HashtagsDashboard
+RUN apk add --no-cache pcre
 
-RUN pip install --no-cache-dir -r requirements.txt
+WORKDIR /app
+COPY . /app
+COPY ./requirements.txt /app
 
-EXPOSE 5001
+RUN pip install -r /app/requirements.txt
 
-CMD [ "python", "app.py" ]
+RUN apk del .build-dependencies && rm -rf /var/cache/apk/*
+
+EXPOSE 5000
+CMD ["uwsgi", "--ini", "/app/wsgi.ini"]
