@@ -45,7 +45,7 @@ services:
       - spark-net       
 
   streaming-submit:
-    build: ./SparkJobs
+    build: spark-jobs
     depends_on: 
       - spark-master
     ports: 
