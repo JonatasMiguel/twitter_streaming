@@ -1,14 +1,14 @@
 version: "3"
 services: 
   client-twitter:
-    build: .\ClientTwitter
+    build: ./ClientTwitter
     ports: 
       - "9998:9998"
     networks:
       - spark-net
     
   dash-board:
-    build: .\HashtagsDashboard
+    build: ./HashtagsDashboard
     ports: 
       - "5001:5001"
     networks:
@@ -43,7 +43,7 @@ services:
       - spark-net       
 
   streaming-submit:
-    build: .\SparkJobs
+    build: ./SparkJobs
     depends_on: 
       - spark-master
     ports: 
