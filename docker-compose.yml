@@ -14,14 +14,7 @@ services:
     networks:
       - spark-net
 
-  streaming-submit:
-    build: .\SparkJobs
-    ports: 
-      - "9998:9998"
-    networks:
-      - spark-net
-
-  spark-master:
+      spark-master:
     image: "sdesilva26/spark_master:0.0.2"
     ports: 
       - "8080:8080"
@@ -48,6 +41,15 @@ services:
       replicas: 3
     networks:
       - spark-net       
+
+  streaming-submit:
+    build: .\SparkJobs
+    depends_on: 
+      - spark-master
+    ports: 
+      - "9998:9998"
+    networks:
+      - spark-net
 
 networks: 
   spark-net:
