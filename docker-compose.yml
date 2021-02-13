@@ -15,7 +15,7 @@ services:
       - spark-net
 
   streaming-submit:
-    image: "sdesilva26/spark_submit:0.0.2"
+    build: .\SparkJobs
     ports: 
       - "9998:9998"
     networks:
