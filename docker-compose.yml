@@ -1,6 +1,7 @@
 version: "3"
 services: 
   client-twitter:
+    image: ClientTwitter
     build: ./ClientTwitter
     ports: 
       - "9998:9998"
@@ -8,6 +9,7 @@ services:
       - spark-net
     
   dash-board:
+    image: HashtagsDashboard
     build: ./HashtagsDashboard
     ports: 
       - "5001:5001"
