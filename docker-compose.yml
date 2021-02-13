@@ -7,14 +7,14 @@ services:
     networks:
       - spark-net
     
-  DashBoard:
+  dash-board:
     build: .\HashtagsDashboard
     ports: 
       - "5001:5001"
     networks:
       - spark-net
 
-      spark-master:
+  spark-master:
     image: "sdesilva26/spark_master:0.0.2"
     ports: 
       - "8080:8080"
