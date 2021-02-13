@@ -1,0 +1,75 @@
+SETUP EM TODOS OS SERVERS
+1- sudo yum update -y
+3- sudo yum install -y yum-utils
+4- sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+5- sudo yum install docker-ce docker-ce-cli containerd.io
+
+6- sudo systemctl start docker (necessario para rodar o docker)
+
+7- sudo docker run hello-world (para testar o docker)
+
+-----------------------------------------------------------------------------
+
+pingar em todos os servers para testar
+
+-----------------------------------------------------------------------------
+NO MASTER SERVER
+1- hostname -i
+1- docker swarm init --advertise-addr 'colocar ip aqui'
+---o docker vai dar um comando para adicionar os worker tipo:
+---docker swarm join --token SWMTKN-1-2egmv2nq87nfkwai6rh4k2tqgprfavb70d6jxrl4fd7xo4033g-08xx7dj0esbujg7h17ovxrzmw 10.158.0.3:2377 
+---executar esse comando nos workers
+-----------------------------------------------------------------------------
+
+Iniciando Spark
+NO MASTER:
+1- docker pull birgerk/apache-spark 
+(baixa a imagem)
+2- sudo docker network create --driver overlay spark 
+(conexão)
+3- sudo docker node update --label-add type=sparkmaster master-node
+(adiciona labe)
+--sudo docker node update --label-add type=sparkworker worker-node-1
+--sudo docker node update --label-add type=sparkworker worker-node-2
+--sudo docker node update --label-add type=sparkworker worker-node-3
+4- sudo docker service create \
+--hostname master \
+--container-label sparkmaster \
+--network spark \
+--constraint node.labels.type==sparkmaster \
+--publish 8080:8080 \
+--publish 7077:7077 \
+--publish 6066:6066 \
+--publish 50070:50070 \
+--replicas 1 \
+--limit-memory 1g \
+--name spark-master \
+birgerk/apache-spark
+(para criar o serviço do master) (removi network do comando)
+
+sudo docker service create \
+--hostname master \
+--container-label sparkmaster \
+--constraint node.labels.type==sparkmaster \
+--publish 8080:8080 \
+--publish 7077:7077 \
+--publish 6066:6066 \
+--publish 50070:50070 \
+--replicas 1 \
+--limit-memory 1g \
+--name spark-master \
+birgerk/apache-spark
+
+
+docker service create \
+--constraint node.labels.type==sparkworker \
+--publish 8081:8081 \
+--replicas 2 \
+--limit-memory 512m \
+--env "SPARK_ROLE=slave" \
+--env "SPARK_MASTER=34.95.179.34" \
+--name spark-worker \
+birgerk/apache-spark

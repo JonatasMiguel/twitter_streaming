@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 9998
 
-CMD [ "python", "./streaming.py" ]
+CMD [ "$SPARK_HOME/bin/spark-submit --conf spark.executor.cores=3 --conf spark.executor.memory=5G --master spark://spark-master:7077", "streaming.py" ]
